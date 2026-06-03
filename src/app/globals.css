@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand colors mapping from DESIGN.md */
+  --color-primary: #1A1C1E;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #1a1c1e;
+  --color-on-primary-container: #838486;
+  
+  --color-secondary: #8C7355; /* Walnut / Timber accent */
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #fdddb9;
+  --color-on-secondary-container: #786044;
+
+  --color-tertiary: #000000;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #181c1e;
+  --color-on-tertiary-container: #818486;
+
+  --color-surface: #f8f9fa; /* Architectural White */
+  --color-surface-dim: #d9dadb;
+  --color-surface-bright: #f8f9fa;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f4f5;
+  --color-surface-container: #edeeef;
+  --color-surface-container-high: #e7e8e9;
+  --color-surface-container-highest: #e1e3e4;
+  
+  --color-on-surface: #191c1d;
+  --color-on-surface-variant: #44474a;
+  --color-inverse-surface: #2e3132;
+  --color-inverse-on-surface: #f0f1f2;
+  --color-outline: #75777a;
+  --color-outline-variant: #c5c6ca;
+  --color-surface-tint: #5d5e61;
+  
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-background: #f8f9fa;
+  --color-on-background: #191c1d;
+  --color-surface-variant: #e1e3e4;
+
+  /* Accent & Functional colors from DESIGN.md */
+  --color-secondary-fixed: #fdddb9;
+  --color-on-secondary-fixed: #281803;
+  --color-secondary-fixed-dim: #e0c29f;
+  --color-on-secondary-fixed-variant: #584329;
+
+  /* Typography System mapping */
+  --font-sans: var(--font-inter), sans-serif;
+  --font-geist: var(--font-geist-sans), monospace, sans-serif;
+
+  /* Radii mapping */
+  --radius-sm: 0.125rem;
+  --radius-default: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-xxl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f8f9fa;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a1c1e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #8c7355;
+}
+
+/* Technical Architect Grid */
+.technical-grid {
+  background-image: radial-gradient(circle, #e5e7eb 1.2px, transparent 1.2px);
+  background-size: 40px 40px;
+}
+
+/* Blueprint Line Grid */
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(117, 119, 122, 0.04) 1px, transparent 1px), 
+    linear-gradient(to bottom, rgba(117, 119, 122, 0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Tactile Analog Noise Overlay */
+.noise-overlay {
+  position: relative;
+}
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuBPDkt5MjFGfJWoMjgUIAzuJQeL2MbU77NbEwYxLK_pGUERMWhTOoJ-_2MErFvfcQY0E7RiyHblLvZK78JWWNhMim1YoiE4uRv-w3fjQm8tmOOfD1sTMncnfvEqQVDWTGL4x_Ksj1Vr6n3mvlX5B14nyCYuUEFuW1CvIT4v3Gjl7hEMY7rNmBu273Wg9WCQWmzctQn5DumcXOcG6v4RpXDDagLtaFAmmWe7Bx-XjHDlQPXKcYmaIG4Eq8DzU-AReMgTY6DxC-w1gp4);
+  opacity: 0.02;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Parametric Glassmorphic Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.04);
+}
+
+.glass-panel-dark {
+  background: rgba(26, 28, 30, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Interactive CSS-Only Form Validations (:user-valid / :user-invalid) --- */
+
+/* Neutral state inputs */
+.form-input {
+  border-bottom: 1.5px solid #c5c6ca;
+  background-color: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+}
+
+/* Focus transition to Walnut */
+.form-input:focus {
+  border-bottom-color: #8c7355;
+  box-shadow: 0 1px 0 0 #8c7355;
+}
+
+/* Invalid State: triggers ONLY after interaction (blur) */
+.form-input:user-invalid {
+  border-bottom-color: #ba1a1a;
+  box-shadow: 0 1px 0 0 #ba1a1a;
+  background-color: rgba(250, 235, 235, 0.3);
+}
+
+/* Valid State: positive reinforcement */
+.form-input:user-valid {
+  border-bottom-color: #715a3e;
+}
+
+/* Show error message when invalid */
+.form-input:user-invalid ~ .error-msg {
+  display: flex !important;
+  opacity: 1;
+  max-height: 40px;
+  transform: translateY(0);
+}
+
+/* Transition styles for error message container */
+.error-msg {
+  display: none;
+  opacity: 0;
+  max-height: 0;
+  transform: translateY(-5px);
+  transition: all 0.3s ease-in-out;
+}
+
+/* Highlight input labels when input is invalid */
+.form-group:has(.form-input:user-invalid) label {
+  color: #ba1a1a;
+}
+
+/* Highlight input labels on focus */
+.form-group:has(.form-input:focus) label {
+  color: #8c7355;
+}
+
+/* Custom visual styles for checkboxes and select elements */
+.form-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%2344474a' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.25em 1.25em;
+  padding-right: 2rem;
+}
